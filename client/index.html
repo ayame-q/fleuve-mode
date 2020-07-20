@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="https://cdn.jsdelivr.net/npm/geolib@3.3.1/lib/index.min.js"></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/locale/ja.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<script src="js/datalist.js"></script>
+	<script src="js/main.js"></script>
+	<title>fleuve mode</title>
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+			<li><a href="#" data-target="about">fleuve modeについて</a></li>
+			<li><a href="#" data-target="area-config">表示地域の設定</a></li>
+		</ul>
+	</nav>
+</header>
+<main>
+	<section id="first-page">
+		<h1>今日の<span id="area-name">天気</span></h1>
+		<div>
+			<div id="weather-icon">
+				<div id="weather-wave1"></div>
+				<div id="weather-wave2"></div>
+				<p id="img" class="image"><img src="img/sunny.svg" alt="晴"></p>
+			</div>
+			<div id="temperature">
+				<dl>
+					<dt>最高気温</dt>
+					<dd class="highest-temp">33℃</dd>
+					<dt>最低気温</dt>
+					<dd class="lowest-temp">24℃</dd>
+				</dl>
+			</div>
+		</div>
+		<div id="alert">
+			<ul>
+				<li>アラート情報</li>
+			</ul>
+		</div>
+	</section>
+	<section id="detail-page">
+		<div id="detail">
+			<p id="comment">日差しが届くものの、急な雨や雷雨の可能性があります。<br>昼間はとても蒸し暑くなるので熱中症対策に気をつけてください。</p>
+			<h2>今日のオススメコーデ</h2>
+			<div id="fashion">
+				<p class="image"></p>
+				<p class="text">シンプルワンピに足元やバッグでアクセント、夏の涼しげコーデ</p>
+			</div>
+			<div id="info">
+				<div id="umbrella">
+					<p class="image"></p>
+					<p class="text">折りたたみ傘を持って出かけましょう</p>
+				</div>
+				<div id="uv">
+					<p class="image"></p>
+					<p class="text">紫外線がかなり強いです</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="hourly-page">
+		<h2>1時間予報</h2>
+		<div class="table-wrap">
+			<table></table>
+		</div>
+	</section>
+	<section id="weekly-page">
+		<h2>週間予報</h2>
+		<div class="table-wrap">
+			<table></table>
+		</div>
+	</section>
+</main>
+<div id="options">
+	<div id="about">
+		<section class="about">
+			<div>
+				<p class="logo"><img src="img/logo.svg" alt="fleuve mode"></p>
+				<h2>このサイトについて</h2>
+				<p>fleuve mode<span style="font-size: 0.7em;">(フルーヴ モード)</span>は輝く女性のための天気予報サイトです。<br>忙しい朝の助けに、少しでも元気を感じてもらえたら…という思いのもと作られています。</p>
+				<h2>著作権表示</h2>
+				<p>このサイトでは位置情報の処理のために<a href="http://geoapi.heartrails.com/api.html" target="_blank">HeartRails Geo API</a>を利用しています。</p>
+			</div>
+			<p class="footer"><small>Copyright &copy; 2020 Ayame Tatematsu</small></p>
+		</section>
+		<div class="close">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</div>
+		<div class="overlay"></div>
+	</div>
+	<div id="area-config">
+		<section class="area-config">
+			<div>
+				<p class="logo"><img src="img/logo.svg" alt="fleuve mode"></p>
+				<h2>表示地域の設定</h2>
+				<form onsubmit="document.getElementById('area-config').classList.remove('show'); return false;">
+					<p id="is-using-gps-wrap" class="checkbox"><input type="checkbox" id="is-using-gps"><label for="is-using-gps">現在地の天気を表示する</label></p>
+					<p>
+						<label for="pref" style="display: none;">都道府県</label>
+						<select id="pref">
+							<option disabled selected value="0">都道府県</option>
+						</select>
+					</p>
+					<p>
+						<label for="area" style="display: none;">地域</label>
+						<select id="area">
+							<option disabled selected value="0">地域</option>
+						</select>
+					</p>
+					<p><input type="submit" id="submit-area" value="決定" disabled></p>
+				</form>
+				</div>
+		</section>
+		<div class="close">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</div>
+		<div class="overlay"></div>
+	</div>
+</div>
+<div id="hamburger">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+</div>
+<div id="overlay"></div>
+<div id="loading">
+	<p><img src="img/logo.svg" alt="fleuve mode"></p>
+</div>
+</body>
+</html>
